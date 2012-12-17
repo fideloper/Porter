@@ -1,0 +1,13 @@
+{
+    "name": "fideloper/porter",
+    "license": "MIT",
+    "keywords": ["parser","youtube","vimeo","meta","meta data","link parser"],
+    "type": "library",
+    "description": "Extendable link-parser and meta-data obtainer for various services such as Vimeo and Youtube",
+    "autoload": {
+        "psr-0": {"Porter": "src/"}
+    },
+    "require": {
+        "shuber/curl": "*"
+     }
+}
