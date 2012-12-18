@@ -7,7 +7,13 @@
     "autoload": {
         "psr-0": {"Porter": "src/"}
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nickl-/curl"
+        }
+    ],
     "require": {
-        "shuber/curl": "*"
+        "shuber/curl": "dev-master"
      }
 }
