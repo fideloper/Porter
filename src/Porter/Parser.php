@@ -45,13 +45,13 @@ class Parser {
 		$matches = array();
 		$final = array();
 
-    	preg_match_all("!".self::MATCH_URL."!i", $input, $matches);
+		preg_match_all("!".self::MATCH_URL."!i", $input, $matches);
 
-    	foreach ( $matches[0] as $url )
-    	{
-    		$final[] = $url;
-    	}
+		foreach ( $matches[0] as $url )
+		{
+			$final[] = $url;
+		}
 
-    	return $final;
+		return $final;
     }
 }
