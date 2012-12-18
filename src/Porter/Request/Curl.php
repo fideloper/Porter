@@ -26,7 +26,7 @@ class Curl implements RequestInterface {
 
 			return json_encode($this->_response->body);
 
-		} catch ( \Shuber\Curl\CurlException )
+		} catch ( \Shuber\Curl\CurlException $e )
 		{
 			return FALSE;
 		}

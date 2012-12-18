@@ -53,6 +53,5 @@ class Parser {
     	}
 
     	return $final;
-	}
-
+    }
 }
