@@ -25,7 +25,10 @@ class Youtube extends ServiceAbstract {
 
 		if ( isset($matches[0]) )
 		{
-			$this->_id = $matches[0];
+			//Edge case, sometimes get 1234?variables=whatever in result
+			$split = explode('?', $matches[0]);
+
+			$this->_id = $split[0];
 
 			return $this->_id;
 		}
@@ -39,7 +42,7 @@ class Youtube extends ServiceAbstract {
 	* @param    object    Request object with which to retrieve data
 	* @return   object    Object of meta data
 	*/
-	public function getMetadata(Porter\Request\RequestInterface $request)
+	public function getMetadata(\Porter\Request\RequestInterface $request)
 	{
 		if ( $this->_metaData !== NULL )
 		{
@@ -49,9 +52,9 @@ class Youtube extends ServiceAbstract {
 		$this->_metaData = array('id' => $this->getId());
 
 		// Magic Request Code
-		$res = $request->get("http://gdata.youtube.com/feeds/api/videos/{$meta_data['embed_url_id']}?alt=json");
+		$res = $request->get("http://gdata.youtube.com/feeds/api/videos/{$this->_metaData['id']}?alt=json");
 
-		$this->_metaData = array_merge($meta_data, array(
+		$this->_metaData = array_merge($this->_metaData, array(
 			'title' => isset($res->entry->title->{'$t'}) ?
 					   $res->entry->title->{'$t'} : null,
 
@@ -66,6 +69,16 @@ class Youtube extends ServiceAbstract {
 		));
 
 		return $this->_metaData;
+	}
+
+	/**
+	* Return instance of itself
+	*
+	* @return    object    return new instance of __CLASS__
+	*/
+	public function instance()
+	{
+		return new self;
 	}
 
 }

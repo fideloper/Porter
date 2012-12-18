@@ -8,30 +8,36 @@ class Parser {
 
 	const MATCH_URL = '(?xi)(?:\b|https?://)((?:www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`\!()\[\]{};:\'".,<>?«»“”‘’]))';
 
+
 	/**
 	* Add service to test input against
 	*
 	* @param    object    implementation of Porter\Service\ServiceInterface
 	* @return   object    for chainability, current instance of Porter\Parser
 	*/
-	public function addService( Porter\Service\ServiceInterface $service )
+	public function addService( \Porter\Service\ServiceInterface $service )
 	{
-		$_services[] = $service;
+		$this->_services[] = $service;
 
 		return $this;
 	}
 
 	public function parse(array $urls)
 	{
+		$instances = array();
+
 		foreach ( $urls as $url )
 		{
 			foreach ( $this->_services as $service )
 			{
 				// No parsing done at this point still
-				$service->instance()->setUrl($url);
+				$instances[] = $service->instance()->setUrl($url);
 			}
 		}
+
+		return $instances;
 	}
+
 
 	/**
 	* Match URLs within given input
