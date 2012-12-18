@@ -15,23 +15,27 @@ class Parser {
 	* @param    object    implementation of Porter\Service\ServiceInterface
 	* @return   object    for chainability, current instance of Porter\Parser
 	*/
-	public function addService( Porter\Service\ServiceInterface $service )
+	public function addService( \Porter\Service\ServiceInterface $service )
 	{
-		$_services[] = $service;
+		$this->_services[] = $service;
 
 		return $this;
 	}
 
 	public function parse(array $urls)
 	{
+		$instances = array();
+
 		foreach ( $urls as $url )
 		{
 			foreach ( $this->_services as $service )
 			{
 				// No parsing done at this point still
-				$service->instance()->setUrl($url);
+				$instances[] = $service->instance()->setUrl($url);
 			}
 		}
+
+		return $instances;
 	}
 
 

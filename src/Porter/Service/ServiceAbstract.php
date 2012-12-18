@@ -65,7 +65,7 @@ abstract class ServiceAbstract implements ServiceInterface {
 	*
 	* @return    mixed    Meta-data of service
 	*/
-	public function getMetadata()
+	public function getMetadata(\Porter\Request\RequestInterface $request)
 	{
 		$this->_metaData = $this->getUrl();
 		return $this->_metaData;
@@ -83,6 +83,7 @@ abstract class ServiceAbstract implements ServiceInterface {
 
 	/**
 	* Return instance of itself
+	* PHP demands this be in every class as well. Which is dumb.
 	*
 	* @return    object    return new instance of __CLASS__
 	*/

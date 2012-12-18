@@ -14,7 +14,7 @@ interface ServiceInterface {
 	public function getId();
 
 	// Get meta data from that URL
-	public function getMetadata();
+	public function getMetadata(\Porter\Request\RequestInterface $request);
 
 	// Get service name
 	public function getServiceName();

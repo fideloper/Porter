@@ -15,5 +15,8 @@
     ],
     "require": {
         "shuber/curl": "dev-master"
-     }
+     },
+    "require-dev": {
+        "mockery/mockery": ">=0.7.2"
+    }
 }
