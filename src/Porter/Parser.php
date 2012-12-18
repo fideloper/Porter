@@ -8,6 +8,7 @@ class Parser {
 
 	const MATCH_URL = '(?xi)(?:\b|https?://)((?:www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`\!()\[\]{};:\'".,<>?«»“”‘’]))';
 
+
 	/**
 	* Add service to test input against
 	*
@@ -32,6 +33,7 @@ class Parser {
 			}
 		}
 	}
+
 
 	/**
 	* Match URLs within given input
