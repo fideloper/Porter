@@ -60,7 +60,7 @@ class VimeoServiceTest extends PHPUnit_Framework_TestCase {
 	protected function getCurlMock()
 	{
 		$mock = m::mock('\Porter\Request\Curl');
-		$mock->shouldReceive('get')->times(9)->andReturn(array(
+		$mock->shouldReceive('get')->times(5)->andReturn(array(
 			'id' => '43426940' // Returned array has at least an ID
 		));
 		return $mock;
