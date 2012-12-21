@@ -24,17 +24,17 @@ class Vimeo extends ServiceAbstract {
 
 		if ( $url['host'] === 'vimeo.com' || $url['host'] === 'www.vimeo.com')
 		{
-			preg_match('/vimeo\.com\/([0-9]*)/', $this->getUrl(), $matches);
+			preg_match('/vimeo\.com(?:\/m)?\/([0-9]*)/', $this->getUrl(), $matches);
 		}
 		elseif ( $url['host'] === 'player.vimeo.com' )
 		{
 			preg_match('/player\.vimeo\.com\/video\/([0-9]*)/', $this->getUrl(), $matches);
 		}
 
-		if ( isset($matches[0]) )
+		if ( isset($matches[1]) )
 		{
 
-			$this->_id = $matches[0];
+			$this->_id = $matches[1];
 
 			return $this->_id;
 		}
