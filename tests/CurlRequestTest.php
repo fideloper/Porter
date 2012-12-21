@@ -44,7 +44,7 @@ class CurlRequestTest extends PHPUnit_Framework_TestCase {
 
 	protected function getCurlMock()
 	{
-		// Not actually mocking anymore, because this uses reflection in its magic methods for some reason
+		// Not actually mocking anymore, because this uses reflection in its magic methods
 		return new Shuber\Curl\Curl();
 
 		$mock = m::mock('Shuber\Curl\Curl');
