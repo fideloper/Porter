@@ -32,13 +32,13 @@ $parser->addService( new \Porter\Service\Vimeo() );
 
 $parsed_urls = $parser->parse( $parser->matchUrls($some_weirdos_comment) );
 
-// Parsed from URLs found
+// ID's Parsed from URLs directly
 foreach ( $parsed_urls as $parsed )
 {
     $item_id = $parsed->getId(); //Youtube: GYamE6G1EZo, Vimeo: 41852814
 }
 
-// Now, let's get fancy!
+// Now, let's get fancy with some API requests
 foreach ( $you_are_els as $parsed )
 {
     $meta = $parsed->getMetadata( new \Porter\Request\Curl() ); // stdClass of data
