@@ -19,7 +19,7 @@ Well you're in luck! Using this spicy library, you can grab the URLs from conten
 
 ## How do I use it?
 ---
-```
+```php
 $some_weirdos_comment = "I love Sriracha sauce!!! I even put it on my Cinnamon Toast Struddle Crunch Tiger Blood Leprechaun cereal! Here's a video review of it http://www.youtube.com/watch?v=GYamE6G1EZo, and a spiffy ad for Sriracha Sauce!!! http://vimeo.com/41852814";
 
 $parser = new \Porter\Parser();
