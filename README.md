@@ -8,9 +8,9 @@
 ## What does it do?
 Say you have a piece of content, maybe from a user on your site.
 
-    I love Sriracha sauce!!! I even put it on my Cinnamon Toast Struddle Crunch Tiger Blood Leprechaun cereal! 
-    Here's a video review of it http://www.youtube.com/watch?v=GYamE6G1EZo, 
-    and a spiffy ad for Sriracha Sauce!!! http://vimeo.com/41852814 
+    I love Sriracha sauce!!! I even put it on my Cinnamon Toast Struddle Crunch Tiger Blood Leprechaun cereal!
+    Here's a video review of it http://www.youtube.com/watch?v=GYamE6G1EZo,
+    and a spiffy ad for Sriracha Sauce!!! http://vimeo.com/41852814
 
 You like how Twitter shows an embed and information about linked Youtube videos, so you figure
 
@@ -39,7 +39,7 @@ foreach ( $parsed_urls as $parsed )
 }
 
 // Now, let's get fancy with some API requests
-foreach ( $you_are_els as $parsed )
+foreach ( $parsed_urls as $parsed )
 {
     $meta = $parsed->getMetadata( new \Porter\Request\Curl() ); // stdClass of data
 }
@@ -56,7 +56,7 @@ Foreach service (Currently Youtube, Vimeo), you can get:
     * Play Time
     * Title
     * etc
-    
+
 ## Contribute!
 There's room for improvement. For instance:
 
