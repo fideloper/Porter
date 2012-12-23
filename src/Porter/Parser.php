@@ -56,7 +56,7 @@ class Parser {
 		if ( $service instanceof \Porter\Service\ServiceInterface )
 		{
 			// No parsing done at this point yet
-			return $service->instance()->setUrl($url);
+			return $service->instance()->setUrl( $this->normalizeUrl($url) );
 		}
 
 		return FALSE;
