@@ -25,7 +25,7 @@ class YoutubeServiceTest extends PHPUnit_Framework_TestCase {
 
 		$parser = $this->getParser();
 
-		$instances = $parser->parse($youtubeUrls);
+		$instances = $parser->parseMany($youtubeUrls);
 
 		// Do we have all our instances?
 		$this->assertTrue( count($instances) === 9 );

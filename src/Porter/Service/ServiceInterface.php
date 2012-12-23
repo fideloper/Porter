@@ -19,6 +19,9 @@ interface ServiceInterface {
 	// Get service name
 	public function getServiceName();
 
+	// Match if url matches service
+	public function matchesHost($url);
+
 	// Return new instance of itself
 	public function instance();
 

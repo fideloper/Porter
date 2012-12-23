@@ -21,7 +21,7 @@ class VimeoServiceTest extends PHPUnit_Framework_TestCase {
 
 		$parser = $this->getParser();
 
-		$instances = $parser->parse($vimeoUrls);
+		$instances = $parser->parseMany($vimeoUrls);
 
 		// Do we have all our instances?
 		$this->assertTrue( count($instances) === 5 );

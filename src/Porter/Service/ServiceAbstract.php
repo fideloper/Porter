@@ -8,6 +8,7 @@ abstract class ServiceAbstract implements ServiceInterface {
 	protected $_id;
 	protected $_metaData;
 	protected $_service;
+	protected $_hosts = array();
 
 	/**
 	* Optionally set URL
@@ -79,6 +80,24 @@ abstract class ServiceAbstract implements ServiceInterface {
 	public function getServiceName()
 	{
 		return $this->_service;
+	}
+
+	/**
+	* Test is supplied URL matches this service
+	*
+	* @param string    URL to test
+	* @return boolean  TRUE if matches this service, else FALSE
+	*/
+	public function matchesHost($url)
+	{
+		$parts = parse_url($url);
+
+		if ( isset($parts['host']) )
+		{
+			return in_array($parts['host'], $this->_hosts);
+		}
+
+		return FALSE;
 	}
 
 	/**

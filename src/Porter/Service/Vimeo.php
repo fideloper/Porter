@@ -6,6 +6,12 @@ class Vimeo extends ServiceAbstract {
 
 	protected $_service = 'Vimeo';
 
+	protected $_hosts = array(
+		'vimeo.com',
+		'www.vimeo.com',
+		'player.vimeo.com',
+	);
+
 	/**
 	* Parse Vimeo URLs via RegEx to get video ID
 	*
@@ -26,7 +32,8 @@ class Vimeo extends ServiceAbstract {
 		{
 			preg_match('/vimeo\.com(?:\/m)?\/([0-9]*)/', $this->getUrl(), $matches);
 		}
-		elseif ( $url['host'] === 'player.vimeo.com' )
+
+		if ( $url['host'] === 'player.vimeo.com' )
 		{
 			preg_match('/player\.vimeo\.com\/video\/([0-9]*)/', $this->getUrl(), $matches);
 		}
