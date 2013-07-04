@@ -1,4 +1,5 @@
 #Porter
+[![Total Downloads](https://poser.pugx.org/fideloper/porter/downloads.png)](https://packagist.org/packages/fideloper/porter)
 ---
 
 **Extendable url-parser thingy and meta-data obtainer for various services such as Youtube and Vimeo**
