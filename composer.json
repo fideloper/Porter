@@ -1,5 +1,11 @@
 {
     "name": "fideloper/porter",
+    "authors": [
+        {
+            "name": "Chris Fidao",
+            "email": "fideloper@gmail.com"
+        }
+    ],
     "license": "MIT",
     "keywords": ["parser","youtube","vimeo","meta","meta data","link parser"],
     "type": "library",

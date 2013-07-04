@@ -6,6 +6,14 @@ class Youtube extends ServiceAbstract {
 
 	protected $_service = 'Youtube';
 
+	protected $_hosts = array(
+		'youtube.com',
+		'www.youtube.com',
+		'youtu.be',
+		'www.youtu.be',
+		'm.youtube.com',
+	);
+
 	/**
 	* Parse Youtube URLs via RegEx to get video ID
 	*

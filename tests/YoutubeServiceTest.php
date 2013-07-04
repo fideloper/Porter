@@ -25,7 +25,7 @@ class YoutubeServiceTest extends PHPUnit_Framework_TestCase {
 
 		$parser = $this->getParser();
 
-		$instances = $parser->parse($youtubeUrls);
+		$instances = $parser->parseMany($youtubeUrls);
 
 		// Do we have all our instances?
 		$this->assertTrue( count($instances) === 9 );
@@ -38,8 +38,8 @@ class YoutubeServiceTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals( $instances[4]->getUrl(), 'http://www.youtu.be/FL8aeeSTthQ' );
 		$this->assertEquals( $instances[5]->getUrl(), 'http://www.youtu.be/FL8aeeSTthQ?hl=en_US' );
 		$this->assertEquals( $instances[6]->getUrl(), 'http://m.youtube.com/watch?v=FL8aeeSTthQ&feature=share' );
-		$this->assertEquals( $instances[7]->getUrl(), 'www.youtube.com/watch?v=FL8aeeSTthQ' );
-		$this->assertEquals( $instances[8]->getUrl(), 'youtube.com/embed/FL8aeeSTthQ' );
+		$this->assertEquals( $instances[7]->getUrl(), 'http://www.youtube.com/watch?v=FL8aeeSTthQ' );
+		$this->assertEquals( $instances[8]->getUrl(), 'http://youtube.com/embed/FL8aeeSTthQ' );
 
 		// Is ID parsed from URL correctly?
 		$this->assertEquals( $instances[0]->getId(), 'FL8aeeSTthQ' );

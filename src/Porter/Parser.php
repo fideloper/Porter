@@ -22,27 +22,69 @@ class Parser {
 		return $this;
 	}
 
-	public function parse(array $urls)
+	/**
+	* Parse a collection of URLs by each registered service
+	*
+	* @param    array    array of URLs to parse
+	* @return   array    collection of Service objects with parsed URLs
+	*/
+	public function parseMany(array $urls)
 	{
-		$instances = array();
+		$urlCollection = array();
 
 		foreach ( $urls as $url )
 		{
-			foreach ( $this->_services as $service )
-			{
-				// No parsing done at this point still
-				$instances[] = $service->instance()->setUrl($url);
-			}
+			$urlCollection[] = $this->parseOne($url);
 		}
 
-		return $instances;
+		return $urlCollection;
+	}
+
+	/**
+	* Parse a URL by each registered service
+	*
+	* @param    string    URL to parse
+	* @return   object    Service object with parsed id
+	*/
+	public function parseOne($url)
+	{
+
+		$instances = array();
+
+		$service = $this->matchService($url);
+
+		if ( $service instanceof \Porter\Service\ServiceInterface )
+		{
+			// No parsing done at this point yet
+			return $service->instance()->setUrl( $this->normalizeUrl($url) );
+		}
+
+		return FALSE;
+	}
+
+	/**
+	* Match a service to given URL
+	*
+	* @param string    Url to match against
+	* @return object|bool   Matched service, or FALSE if no match
+	*/
+	public function matchService($url)
+	{
+		foreach ( $this->_services as $service )
+		{
+			if ( $service->matchesHost( $this->normalizeUrl($url) ) )
+			{
+				return $service;
+			}
+		}
+		return FALSE;
 	}
 
 
 	/**
 	* Match URLs within given input
-	* TO DO: Abstract this out (To a helper? Separate library? Filter?)
 	*
+	* @todo     Abstract this out (To a helper? Separate library? Filter?)
 	* @param    string    text input
 	* @return   array     url matches, if any
 	*/
@@ -59,5 +101,42 @@ class Parser {
 		}
 
 		return $final;
+    }
+
+    /**
+    * Normalize multiple URLs
+    *
+    * @param array    Array of URLs to normalize
+    * @return array   Array of normalized URLs
+    */
+    public function normalizeMany(array $urls)
+    {
+    	array_walk($urls, array($this, 'normalizeUrl'));
+
+    	return $urls;
+    }
+
+    /**
+    * Ensure 'http://' or 'https://' exists in URLs
+    *
+    * @param string    URL to normalize
+    * @return string   Normalized URL
+    */
+    public function normalizeUrl($url)
+    {
+    	// Incase someone uses //example.com. Assumes no ssl.
+		if ( strpos($url, '//') === 0 )
+		{
+			$url = 'http:' . $url;
+		}
+
+		// Add protocol if not present. Assumes no ssl.
+		if( strpos($url, 'http://') === FALSE && strpos($url, 'https://') === FALSE )
+		{
+			$url = 'http://' . $url;
+		}
+
+		return $url;
+
     }
 }
